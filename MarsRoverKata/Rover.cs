@@ -128,13 +128,13 @@ namespace MarsRoverKata
                     break;
                 case "M":
                     DebugOut("doCommand().12 --> (c == moveCommand)");
-                    DoMove(IsDebugChecked);
+                    DoMove();
                     break;
             }
         }
 
 
-        public void DoMove(bool isDebugChecked)
+        public void DoMove()
         {
             switch (Direction)
             {

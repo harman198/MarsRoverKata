@@ -5,10 +5,6 @@ internal static class RoverMover
 {
     private static readonly Rover _rover = new();
     private readonly static string _validDirections = "NSEW";
-    private readonly static string _northDirection = "N";
-    private readonly static string _southDirection = "S";
-    private readonly static string _eastDirection = "E";
-    private readonly static string _westDirection = "W";
     private readonly static string _validCommands = "LRM";
     private readonly static string _leftCommand = "L";
     private readonly static string _rightCommand = "R";
@@ -16,67 +12,6 @@ internal static class RoverMover
 
     public static bool IsDebugChecked { get; set; } = false;
 
-
-    private static void DoCommand(string c)
-    {
-        _rover.DebugOut("doCommand().1 --> c=" + c, IsDebugChecked);
-        switch (c)
-        {
-            case "L":
-                _rover.DebugOut("doCommand().2 --> (c == leftCommand)", IsDebugChecked);
-                switch (_rover.SDirection)
-                {
-                    case "N":
-                        _rover.DebugOut("doCommand().3 --> doSpin(westDirection)", IsDebugChecked);
-                        DoSpin(_westDirection);
-                        break;
-                    case "W":
-                        _rover.DebugOut("doCommand().4 --> doSpin(southDirection)", IsDebugChecked);
-                        DoSpin(_southDirection);
-                        break;
-                    case "S":
-                        _rover.DebugOut("doCommand().5 --> doSpin(eastDirection)", IsDebugChecked);
-                        DoSpin(_eastDirection);
-                        break;
-                    case "E":
-                        _rover.DebugOut("doCommand().6 --> doSpin(northDirection)", IsDebugChecked);
-                        DoSpin(_northDirection);
-                        break;
-                }
-                break;
-            case "R":
-                _rover.DebugOut("doCommand().7 --> (c == rightCommand)", IsDebugChecked);
-                switch (_rover.SDirection)
-                {
-                    case "N":
-                        _rover.DebugOut("doCommand().8 --> doSpin(eastDirection)", IsDebugChecked);
-                        DoSpin(_eastDirection);
-                        break;
-                    case "E":
-                        _rover.DebugOut("doCommand().9 --> doSpin(southDirection)", IsDebugChecked);
-                        DoSpin(_southDirection);
-                        break;
-                    case "S":
-                        _rover.DebugOut("doCommand().10 --> doSpin(westDirection)", IsDebugChecked);
-                        DoSpin(_westDirection);
-                        break;
-                    case "W":
-                        _rover.DebugOut("doCommand().11 --> doSpin(northDirection)", IsDebugChecked);
-                        DoSpin(_northDirection);
-                        break;
-                }
-                break;
-            case "M":
-                _rover.DebugOut("doCommand().12 --> (c == moveCommand)", IsDebugChecked);
-                _rover.DoMove(IsDebugChecked);
-                break;
-        }
-    }
-
-    private static void DoSpin(string d)
-    {
-        _rover.DoSpin(d, IsDebugChecked);
-    }
 
     public static string ParseCommand(string c)
     {
@@ -92,7 +27,7 @@ internal static class RoverMover
                 {
                     string aCmd = token.Substring(j, 1);
                     _rover.DebugOut("parseCommand().2 aCmd=" + aCmd, IsDebugChecked);
-                    DoCommand(aCmd);
+                    _rover.DoCommand(aCmd, IsDebugChecked);
                 }
             }
             else
@@ -117,7 +52,7 @@ internal static class RoverMover
                 else if (_validCommands.IndexOf(token) > -1)
                 {
                     _rover.DebugOut("parseCommand().6 doCommand(" + token + ")", IsDebugChecked);
-                    DoCommand(token);
+                    _rover.DoCommand(token, IsDebugChecked);
                 }
             }
         }

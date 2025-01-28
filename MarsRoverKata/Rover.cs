@@ -16,11 +16,16 @@ namespace MarsRoverKata
         public int Y_Position { get; set; } = 0;
         public string Direction { get; set; } = "";
 
-        private bool IsDebugChecked { get; set; } = false;
+        private bool IsDebugChecked { get; init; }
 
-        public void DebugOut(string msg, bool isDebugChecked)
+        public Rover(bool isDebugChecked)
         {
-            if (isDebugChecked)
+            IsDebugChecked = isDebugChecked;
+        }
+
+        public void DebugOut(string msg)
+        {
+            if (IsDebugChecked)
             {
                 Console.WriteLine(msg);
             }
@@ -33,24 +38,24 @@ namespace MarsRoverKata
             for (int i = 0; i < tokens.Length; i++)
             {
                 string token = tokens[i];
-                DebugOut("parseCommand().1 aTok=" + token, IsDebugChecked);
+                DebugOut("parseCommand().1 aTok=" + token);
                 if (token.Length > 1)
                 {
                     for (var j = 0; j < token.Length; j++)
                     {
                         string aCmd = token.Substring(j, 1);
-                        DebugOut("parseCommand().2 aCmd=" + aCmd, IsDebugChecked);
+                        DebugOut("parseCommand().2 aCmd=" + aCmd);
                         DoCommand(aCmd, IsDebugChecked);
                     }
                 }
                 else
                 {
                     bool b = Rover.IsInteger(token);
-                    DebugOut("parseCommand().3 --> b=" + b, IsDebugChecked);
+                    DebugOut("parseCommand().3 --> b=" + b);
                     if (b)
                     {
                         items.Push(token);
-                        DebugOut("parseCommand().4 items.Count=" + items.Count, IsDebugChecked);
+                        DebugOut("parseCommand().4 items.Count=" + items.Count);
                         if (items.Count == 2)
                         {
                             Y_Position = Convert.ToInt32(items.Pop());
@@ -60,11 +65,11 @@ namespace MarsRoverKata
                     else if (_validDirections.IndexOf(token) > -1)
                     {
                         Direction = token;
-                        DebugOut("parseCommand().5 s_direction=" + Direction, IsDebugChecked);
+                        DebugOut("parseCommand().5 s_direction=" + Direction);
                     }
                     else if (_validCommands.IndexOf(token) > -1)
                     {
-                        DebugOut("parseCommand().6 doCommand(" + token + ")", IsDebugChecked);
+                        DebugOut("parseCommand().6 doCommand(" + token + ")");
                         DoCommand(token, IsDebugChecked);
                     }
                 }
@@ -74,55 +79,55 @@ namespace MarsRoverKata
 
         public void DoCommand(string c, bool IsDebugChecked)
         {
-            DebugOut("doCommand().1 --> c=" + c, IsDebugChecked);
+            DebugOut("doCommand().1 --> c=" + c);
             switch (c)
             {
                 case "L":
-                    DebugOut("doCommand().2 --> (c == leftCommand)", IsDebugChecked);
+                    DebugOut("doCommand().2 --> (c == leftCommand)");
                     switch (Direction)
                     {
                         case "N":
-                            DebugOut("doCommand().3 --> doSpin(westDirection)", IsDebugChecked);
+                            DebugOut("doCommand().3 --> doSpin(westDirection)");
                             DoSpin(_westDirection, IsDebugChecked);
                             break;
                         case "W":
-                            DebugOut("doCommand().4 --> doSpin(southDirection)", IsDebugChecked);
+                            DebugOut("doCommand().4 --> doSpin(southDirection)");
                             DoSpin(_southDirection, IsDebugChecked);
                             break;
                         case "S":
-                            DebugOut("doCommand().5 --> doSpin(eastDirection)", IsDebugChecked);
+                            DebugOut("doCommand().5 --> doSpin(eastDirection)");
                             DoSpin(_eastDirection, IsDebugChecked);
                             break;
                         case "E":
-                            DebugOut("doCommand().6 --> doSpin(northDirection)", IsDebugChecked);
+                            DebugOut("doCommand().6 --> doSpin(northDirection)");
                             DoSpin(_northDirection, IsDebugChecked);
                             break;
                     }
                     break;
                 case "R":
-                    DebugOut("doCommand().7 --> (c == rightCommand)", IsDebugChecked);
+                    DebugOut("doCommand().7 --> (c == rightCommand)");
                     switch (Direction)
                     {
                         case "N":
-                            DebugOut("doCommand().8 --> doSpin(eastDirection)", IsDebugChecked);
+                            DebugOut("doCommand().8 --> doSpin(eastDirection)");
                             DoSpin(_eastDirection, IsDebugChecked);
                             break;
                         case "E":
-                            DebugOut("doCommand().9 --> doSpin(southDirection)", IsDebugChecked);
+                            DebugOut("doCommand().9 --> doSpin(southDirection)");
                             DoSpin(_southDirection, IsDebugChecked);
                             break;
                         case "S":
-                            DebugOut("doCommand().10 --> doSpin(westDirection)", IsDebugChecked);
+                            DebugOut("doCommand().10 --> doSpin(westDirection)");
                             DoSpin(_westDirection, IsDebugChecked);
                             break;
                         case "W":
-                            DebugOut("doCommand().11 --> doSpin(northDirection)", IsDebugChecked);
+                            DebugOut("doCommand().11 --> doSpin(northDirection)");
                             DoSpin(_northDirection, IsDebugChecked);
                             break;
                     }
                     break;
                 case "M":
-                    DebugOut("doCommand().12 --> (c == moveCommand)", IsDebugChecked);
+                    DebugOut("doCommand().12 --> (c == moveCommand)");
                     DoMove(IsDebugChecked);
                     break;
             }
@@ -134,19 +139,19 @@ namespace MarsRoverKata
             switch (Direction)
             {
                 case "N":
-                    DebugOut("doMove().1 --> (s_direction == northDirection)", isDebugChecked);
+                    DebugOut("doMove().1 --> (s_direction == northDirection)");
                     Y_Position = Y_Position + 1;
                     break;
                 case "E":
-                    DebugOut("doMove().2 --> (s_direction == eastDirection)", isDebugChecked);
+                    DebugOut("doMove().2 --> (s_direction == eastDirection)");
                     X_Position = X_Position + 1;
                     break;
                 case "S":
-                    DebugOut("doMove().3 --> (s_direction == southDirection)", isDebugChecked);
+                    DebugOut("doMove().3 --> (s_direction == southDirection)");
                     Y_Position = Y_Position - 1;
                     break;
                 case "W":
-                    DebugOut("doMove().4 --> (s_direction == westDirection)", isDebugChecked);
+                    DebugOut("doMove().4 --> (s_direction == westDirection)");
                     X_Position = X_Position - 1;
                     break;
             }
@@ -155,7 +160,7 @@ namespace MarsRoverKata
         public void DoSpin(string d, bool IsDebugChecked)
         {
             Direction = ((_validDirections.IndexOf(d) > -1) || (_validCommands.IndexOf(d) > -1)) ? d : Direction;
-            DebugOut("doSpin().1 --> d=" + d + ", s_direction=" + Direction, IsDebugChecked);
+            DebugOut("doSpin().1 --> d=" + d + ", s_direction=" + Direction);
         }
 
         public string publish_values()

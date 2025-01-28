@@ -35,7 +35,7 @@ public class Program
 
     public static void RunRover(IEnumerable<(string, string)> inputs, bool debug = false)
     {
-        var rover = new Rover();
+        var rover = new Rover(debug);
 
         foreach (var (cmd, expected) in inputs)
         {

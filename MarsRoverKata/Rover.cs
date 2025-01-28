@@ -12,9 +12,9 @@ namespace MarsRoverKata
 
         private readonly static string _validCommands = "LRM";
 
-        public int IPtX { get; set; } = 0;
-        public int IPtY { get; set; } = 0;
-        public string SDirection { get; set; } = "";
+        public int X_Position { get; set; } = 0;
+        public int Y_Position { get; set; } = 0;
+        public string Direction { get; set; } = "";
 
         private bool IsDebugChecked { get; set; } = false;
 
@@ -53,14 +53,14 @@ namespace MarsRoverKata
                         DebugOut("parseCommand().4 items.Count=" + items.Count, IsDebugChecked);
                         if (items.Count == 2)
                         {
-                            IPtY = Convert.ToInt32(items.Pop());
-                            IPtX = Convert.ToInt32(items.Pop());
+                            Y_Position = Convert.ToInt32(items.Pop());
+                            X_Position = Convert.ToInt32(items.Pop());
                         }
                     }
                     else if (_validDirections.IndexOf(token) > -1)
                     {
-                        SDirection = token;
-                        DebugOut("parseCommand().5 s_direction=" + SDirection, IsDebugChecked);
+                        Direction = token;
+                        DebugOut("parseCommand().5 s_direction=" + Direction, IsDebugChecked);
                     }
                     else if (_validCommands.IndexOf(token) > -1)
                     {
@@ -79,7 +79,7 @@ namespace MarsRoverKata
             {
                 case "L":
                     DebugOut("doCommand().2 --> (c == leftCommand)", IsDebugChecked);
-                    switch (SDirection)
+                    switch (Direction)
                     {
                         case "N":
                             DebugOut("doCommand().3 --> doSpin(westDirection)", IsDebugChecked);
@@ -101,7 +101,7 @@ namespace MarsRoverKata
                     break;
                 case "R":
                     DebugOut("doCommand().7 --> (c == rightCommand)", IsDebugChecked);
-                    switch (SDirection)
+                    switch (Direction)
                     {
                         case "N":
                             DebugOut("doCommand().8 --> doSpin(eastDirection)", IsDebugChecked);
@@ -131,36 +131,36 @@ namespace MarsRoverKata
 
         public void DoMove(bool isDebugChecked)
         {
-            switch (SDirection)
+            switch (Direction)
             {
                 case "N":
                     DebugOut("doMove().1 --> (s_direction == northDirection)", isDebugChecked);
-                    IPtY = IPtY + 1;
+                    Y_Position = Y_Position + 1;
                     break;
                 case "E":
                     DebugOut("doMove().2 --> (s_direction == eastDirection)", isDebugChecked);
-                    IPtX = IPtX + 1;
+                    X_Position = X_Position + 1;
                     break;
                 case "S":
                     DebugOut("doMove().3 --> (s_direction == southDirection)", isDebugChecked);
-                    IPtY = IPtY - 1;
+                    Y_Position = Y_Position - 1;
                     break;
                 case "W":
                     DebugOut("doMove().4 --> (s_direction == westDirection)", isDebugChecked);
-                    IPtX = IPtX - 1;
+                    X_Position = X_Position - 1;
                     break;
             }
         }
 
         public void DoSpin(string d, bool IsDebugChecked)
         {
-            SDirection = ((_validDirections.IndexOf(d) > -1) || (_validCommands.IndexOf(d) > -1)) ? d : SDirection;
-            DebugOut("doSpin().1 --> d=" + d + ", s_direction=" + SDirection, IsDebugChecked);
+            Direction = ((_validDirections.IndexOf(d) > -1) || (_validCommands.IndexOf(d) > -1)) ? d : Direction;
+            DebugOut("doSpin().1 --> d=" + d + ", s_direction=" + Direction, IsDebugChecked);
         }
 
         public string publish_values()
         {
-            string s = IPtX + " " + IPtY + " " + SDirection;
+            string s = X_Position + " " + Y_Position + " " + Direction;
             Console.WriteLine(s);
             return s;
         }

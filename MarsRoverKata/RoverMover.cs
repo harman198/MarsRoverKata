@@ -75,8 +75,7 @@ internal static class RoverMover
 
     private static void DoSpin(string d)
     {
-        _rover.SDirection = ((_validDirections.IndexOf(d) > -1) || (_validCommands.IndexOf(d) > -1)) ? d : _rover.SDirection;
-        _rover.DebugOut("doSpin().1 --> d=" + d + ", s_direction=" + _rover.SDirection, IsDebugChecked);
+        _rover.DoSpin(d, IsDebugChecked);
     }
 
     public static string ParseCommand(string c)

@@ -2,11 +2,14 @@
 {
     public class Rover
     {
+        private readonly static string _validDirections = "NSEW";
+        private readonly static string _validCommands = "LRM";
+
         public int IPtX { get; set; } = 0;
         public int IPtY { get; set; } = 0;
         public string SDirection { get; set; } = "";
 
-        public bool IsDebugChecked { get; set; } = false;
+        private bool IsDebugChecked { get; set; } = false;
 
         public void DebugOut(string msg, bool isDebugChecked)
         {
@@ -37,6 +40,12 @@
                     IPtX = IPtX - 1;
                     break;
             }
+        }
+
+        public void DoSpin(string d, bool IsDebugChecked)
+        {
+            SDirection = ((_validDirections.IndexOf(d) > -1) || (_validCommands.IndexOf(d) > -1)) ? d : SDirection;
+            DebugOut("doSpin().1 --> d=" + d + ", s_direction=" + SDirection, IsDebugChecked);
         }
 
         public string publish_values()

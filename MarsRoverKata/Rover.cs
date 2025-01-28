@@ -45,7 +45,7 @@ namespace MarsRoverKata
                     {
                         string aCmd = token.Substring(j, 1);
                         DebugOut("parseCommand().2 aCmd=" + aCmd);
-                        DoCommand(aCmd, IsDebugChecked);
+                        DoCommand(aCmd);
                     }
                 }
                 else
@@ -70,14 +70,14 @@ namespace MarsRoverKata
                     else if (_validCommands.IndexOf(token) > -1)
                     {
                         DebugOut("parseCommand().6 doCommand(" + token + ")");
-                        DoCommand(token, IsDebugChecked);
+                        DoCommand(token);
                     }
                 }
             }
             return publish_values();
         }
 
-        public void DoCommand(string c, bool IsDebugChecked)
+        public void DoCommand(string c)
         {
             DebugOut("doCommand().1 --> c=" + c);
             switch (c)

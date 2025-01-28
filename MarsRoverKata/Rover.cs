@@ -88,19 +88,19 @@ namespace MarsRoverKata
                     {
                         case "N":
                             DebugOut("doCommand().3 --> doSpin(westDirection)");
-                            DoSpin(_westDirection, IsDebugChecked);
+                            DoSpin(_westDirection);
                             break;
                         case "W":
                             DebugOut("doCommand().4 --> doSpin(southDirection)");
-                            DoSpin(_southDirection, IsDebugChecked);
+                            DoSpin(_southDirection);
                             break;
                         case "S":
                             DebugOut("doCommand().5 --> doSpin(eastDirection)");
-                            DoSpin(_eastDirection, IsDebugChecked);
+                            DoSpin(_eastDirection);
                             break;
                         case "E":
                             DebugOut("doCommand().6 --> doSpin(northDirection)");
-                            DoSpin(_northDirection, IsDebugChecked);
+                            DoSpin(_northDirection);
                             break;
                     }
                     break;
@@ -110,19 +110,19 @@ namespace MarsRoverKata
                     {
                         case "N":
                             DebugOut("doCommand().8 --> doSpin(eastDirection)");
-                            DoSpin(_eastDirection, IsDebugChecked);
+                            DoSpin(_eastDirection);
                             break;
                         case "E":
                             DebugOut("doCommand().9 --> doSpin(southDirection)");
-                            DoSpin(_southDirection, IsDebugChecked);
+                            DoSpin(_southDirection);
                             break;
                         case "S":
                             DebugOut("doCommand().10 --> doSpin(westDirection)");
-                            DoSpin(_westDirection, IsDebugChecked);
+                            DoSpin(_westDirection);
                             break;
                         case "W":
                             DebugOut("doCommand().11 --> doSpin(northDirection)");
-                            DoSpin(_northDirection, IsDebugChecked);
+                            DoSpin(_northDirection);
                             break;
                     }
                     break;
@@ -157,7 +157,7 @@ namespace MarsRoverKata
             }
         }
 
-        public void DoSpin(string d, bool IsDebugChecked)
+        public void DoSpin(string d)
         {
             Direction = ((_validDirections.IndexOf(d) > -1) || (_validCommands.IndexOf(d) > -1)) ? d : Direction;
             DebugOut("doSpin().1 --> d=" + d + ", s_direction=" + Direction);

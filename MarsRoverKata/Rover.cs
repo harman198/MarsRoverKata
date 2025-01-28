@@ -69,7 +69,7 @@ namespace MarsRoverKata
                     }
                 }
             }
-            return publish_values();
+            return PublishValues();
         }
 
         private void DoCommand(string c)
@@ -157,7 +157,7 @@ namespace MarsRoverKata
             DebugOut("doSpin().1 --> d=" + d + ", s_direction=" + Direction);
         }
 
-        private string publish_values()
+        private string PublishValues()
         {
             string s = X_Position + " " + Y_Position + " " + Direction;
             Console.WriteLine(s);

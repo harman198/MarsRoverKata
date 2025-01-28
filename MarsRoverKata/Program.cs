@@ -39,7 +39,7 @@ public class Program
 
         foreach (var (cmd, expected) in inputs)
         {
-            string x = rover.ParseCommand(cmd, debug);
+            string x = rover.ParseCommand(cmd);
             if (x != expected)
             {
                 Console.WriteLine("ERROR #1");

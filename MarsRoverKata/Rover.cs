@@ -31,7 +31,7 @@ namespace MarsRoverKata
             }
         }
 
-        public string ParseCommand(string c, bool IsDebugChecked)
+        public string ParseCommand(string c)
         {
             Stack items = new();
             string[] tokens = c.Split(' ');

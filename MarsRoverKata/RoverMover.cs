@@ -126,27 +126,27 @@ internal static class RoverMover
     public static string ParseCommand(string c)
     {
         Stack items = new();
-        string[] toks = c.Split(' ');
-        for (int i = 0; i < toks.Length; i++)
+        string[] tokens = c.Split(' ');
+        for (int i = 0; i < tokens.Length; i++)
         {
-            string aTok = toks[i];
-            DebugOut("parseCommand().1 aTok=" + aTok);
-            if (aTok.Length > 1)
+            string token = tokens[i];
+            DebugOut("parseCommand().1 aTok=" + token);
+            if (token.Length > 1)
             {
-                for (var j = 0; j < aTok.Length; j++)
+                for (var j = 0; j < token.Length; j++)
                 {
-                    string aCmd = aTok.Substring(j, 1);
+                    string aCmd = token.Substring(j, 1);
                     DebugOut("parseCommand().2 aCmd=" + aCmd);
                     DoCommand(aCmd);
                 }
             }
             else
             {
-                bool b = IsInteger(aTok);
+                bool b = IsInteger(token);
                 DebugOut("parseCommand().3 --> b=" + b);
                 if (b)
                 {
-                    items.Push(aTok);
+                    items.Push(token);
                     DebugOut("parseCommand().4 items.Count=" + items.Count);
                     if (items.Count == 2)
                     {
@@ -154,15 +154,15 @@ internal static class RoverMover
                         IPtX = Convert.ToInt32(items.Pop());
                     }
                 }
-                else if (_validDirections.IndexOf(aTok) > -1)
+                else if (_validDirections.IndexOf(token) > -1)
                 {
-                    SDirection = aTok;
+                    SDirection = token;
                     DebugOut("parseCommand().5 s_direction=" + SDirection);
                 }
-                else if (_validCommands.IndexOf(aTok) > -1)
+                else if (_validCommands.IndexOf(token) > -1)
                 {
-                    DebugOut("parseCommand().6 doCommand(" + aTok + ")");
-                    DoCommand(aTok);
+                    DebugOut("parseCommand().6 doCommand(" + token + ")");
+                    DoCommand(token);
                 }
             }
         }

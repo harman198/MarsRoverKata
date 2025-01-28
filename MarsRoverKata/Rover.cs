@@ -1,6 +1,4 @@
-﻿using System.Collections;
-
-namespace MarsRoverKata
+﻿namespace MarsRoverKata
 {
     public class Rover(bool isDebugChecked)
     {
@@ -28,7 +26,7 @@ namespace MarsRoverKata
 
         public string ParseCommand(string c)
         {
-            Stack items = new();
+            Stack<int> items = new();
             string[] tokens = c.Split(' ');
             for (int i = 0; i < tokens.Length; i++)
             {
@@ -45,16 +43,16 @@ namespace MarsRoverKata
                 }
                 else
                 {
-                    bool b = Rover.IsInteger(token);
+                    bool b = int.TryParse(token, out int intValue);
                     DebugOut("parseCommand().3 --> b=" + b);
                     if (b)
                     {
-                        items.Push(token);
+                        items.Push(intValue);
                         DebugOut("parseCommand().4 items.Count=" + items.Count);
                         if (items.Count == 2)
                         {
-                            Y_Position = Convert.ToInt32(items.Pop());
-                            X_Position = Convert.ToInt32(items.Pop());
+                            Y_Position = items.Pop();
+                            X_Position = items.Pop();
                         }
                     }
                     else if (_validDirections.IndexOf(token) > -1)
@@ -162,19 +160,6 @@ namespace MarsRoverKata
             string s = X_Position + " " + Y_Position + " " + Direction;
             Console.WriteLine(s);
             return s;
-        }
-
-        private static bool IsInteger(string theValue)
-        {
-            try
-            {
-                Convert.ToInt32(theValue);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
         }
     }
 }

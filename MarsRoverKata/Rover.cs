@@ -35,19 +35,19 @@
                     {
                         case "N":
                             DebugOut("doCommand().3 --> doSpin(westDirection)", IsDebugChecked);
-                            DoSpin(_westDirection);
+                            DoSpin(_westDirection, IsDebugChecked);
                             break;
                         case "W":
                             DebugOut("doCommand().4 --> doSpin(southDirection)", IsDebugChecked);
-                            DoSpin(_southDirection);
+                            DoSpin(_southDirection, IsDebugChecked);
                             break;
                         case "S":
                             DebugOut("doCommand().5 --> doSpin(eastDirection)", IsDebugChecked);
-                            DoSpin(_eastDirection);
+                            DoSpin(_eastDirection, IsDebugChecked);
                             break;
                         case "E":
                             DebugOut("doCommand().6 --> doSpin(northDirection)", IsDebugChecked);
-                            DoSpin(_northDirection);
+                            DoSpin(_northDirection, IsDebugChecked);
                             break;
                     }
                     break;
@@ -57,19 +57,19 @@
                     {
                         case "N":
                             DebugOut("doCommand().8 --> doSpin(eastDirection)", IsDebugChecked);
-                            DoSpin(_eastDirection);
+                            DoSpin(_eastDirection, IsDebugChecked);
                             break;
                         case "E":
                             DebugOut("doCommand().9 --> doSpin(southDirection)", IsDebugChecked);
-                            DoSpin(_southDirection);
+                            DoSpin(_southDirection, IsDebugChecked);
                             break;
                         case "S":
                             DebugOut("doCommand().10 --> doSpin(westDirection)", IsDebugChecked);
-                            DoSpin(_westDirection);
+                            DoSpin(_westDirection, IsDebugChecked);
                             break;
                         case "W":
                             DebugOut("doCommand().11 --> doSpin(northDirection)", IsDebugChecked);
-                            DoSpin(_northDirection);
+                            DoSpin(_northDirection, IsDebugChecked);
                             break;
                     }
                     break;

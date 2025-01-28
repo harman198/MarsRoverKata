@@ -16,65 +16,58 @@ internal static class RoverMover
 
     public static bool IsDebugChecked { get; set; } = false;
 
-    private static void DebugOut(string msg)
-    {
-        if (IsDebugChecked)
-        {
-            Console.WriteLine(msg);
-        }
-    }
 
     private static void DoCommand(string c)
     {
-        DebugOut("doCommand().1 --> c=" + c);
+        _rover.DebugOut("doCommand().1 --> c=" + c, IsDebugChecked);
         switch (c)
         {
             case "L":
-                DebugOut("doCommand().2 --> (c == leftCommand)");
+                _rover.DebugOut("doCommand().2 --> (c == leftCommand)", IsDebugChecked);
                 switch (_rover.SDirection)
                 {
                     case "N":
-                        DebugOut("doCommand().3 --> doSpin(westDirection)");
+                        _rover.DebugOut("doCommand().3 --> doSpin(westDirection)", IsDebugChecked);
                         DoSpin(_westDirection);
                         break;
                     case "W":
-                        DebugOut("doCommand().4 --> doSpin(southDirection)");
+                        _rover.DebugOut("doCommand().4 --> doSpin(southDirection)", IsDebugChecked);
                         DoSpin(_southDirection);
                         break;
                     case "S":
-                        DebugOut("doCommand().5 --> doSpin(eastDirection)");
+                        _rover.DebugOut("doCommand().5 --> doSpin(eastDirection)", IsDebugChecked);
                         DoSpin(_eastDirection);
                         break;
                     case "E":
-                        DebugOut("doCommand().6 --> doSpin(northDirection)");
+                        _rover.DebugOut("doCommand().6 --> doSpin(northDirection)", IsDebugChecked);
                         DoSpin(_northDirection);
                         break;
                 }
                 break;
             case "R":
-                DebugOut("doCommand().7 --> (c == rightCommand)");
+                _rover.DebugOut("doCommand().7 --> (c == rightCommand)", IsDebugChecked);
                 switch (_rover.SDirection)
                 {
                     case "N":
-                        DebugOut("doCommand().8 --> doSpin(eastDirection)");
+                        _rover.DebugOut("doCommand().8 --> doSpin(eastDirection)", IsDebugChecked);
                         DoSpin(_eastDirection);
                         break;
                     case "E":
-                        DebugOut("doCommand().9 --> doSpin(southDirection)");
+                        _rover.DebugOut("doCommand().9 --> doSpin(southDirection)", IsDebugChecked);
                         DoSpin(_southDirection);
                         break;
                     case "S":
-                        DebugOut("doCommand().10 --> doSpin(westDirection)");
+                        _rover.DebugOut("doCommand().10 --> doSpin(westDirection)", IsDebugChecked);
                         DoSpin(_westDirection);
                         break;
                     case "W":
-                        DebugOut("doCommand().11 --> doSpin(northDirection)");
+                        _rover.DebugOut("doCommand().11 --> doSpin(northDirection)", IsDebugChecked);
                         DoSpin(_northDirection);
                         break;
                 }
                 break;
             case "M":
-                DebugOut("doCommand().12 --> (c == moveCommand)");
+                _rover.DebugOut("doCommand().12 --> (c == moveCommand)", IsDebugChecked);
                 DoMove();
                 break;
         }
@@ -85,19 +78,19 @@ internal static class RoverMover
         switch (_rover.SDirection)
         {
             case "N":
-                DebugOut("doMove().1 --> (s_direction == northDirection)");
+                _rover.DebugOut("doMove().1 --> (s_direction == northDirection)", IsDebugChecked);
                 _rover.IPtY = _rover.IPtY + 1;
                 break;
             case "E":
-                DebugOut("doMove().2 --> (s_direction == eastDirection)");
+                _rover.DebugOut("doMove().2 --> (s_direction == eastDirection)", IsDebugChecked);
                 _rover.IPtX = _rover.IPtX + 1;
                 break;
             case "S":
-                DebugOut("doMove().3 --> (s_direction == southDirection)");
+                _rover.DebugOut("doMove().3 --> (s_direction == southDirection)", IsDebugChecked);
                 _rover.IPtY = _rover.IPtY - 1;
                 break;
             case "W":
-                DebugOut("doMove().4 --> (s_direction == westDirection)");
+                _rover.DebugOut("doMove().4 --> (s_direction == westDirection)", IsDebugChecked);
                 _rover.IPtX = _rover.IPtX - 1;
                 break;
         }
@@ -106,7 +99,7 @@ internal static class RoverMover
     private static void DoSpin(string d)
     {
         _rover.SDirection = ((_validDirections.IndexOf(d) > -1) || (_validCommands.IndexOf(d) > -1)) ? d : _rover.SDirection;
-        DebugOut("doSpin().1 --> d=" + d + ", s_direction=" + _rover.SDirection);
+        _rover.DebugOut("doSpin().1 --> d=" + d + ", s_direction=" + _rover.SDirection, IsDebugChecked);
     }
 
     public static string ParseCommand(string c)
@@ -116,24 +109,24 @@ internal static class RoverMover
         for (int i = 0; i < tokens.Length; i++)
         {
             string token = tokens[i];
-            DebugOut("parseCommand().1 aTok=" + token);
+            _rover.DebugOut("parseCommand().1 aTok=" + token, IsDebugChecked);
             if (token.Length > 1)
             {
                 for (var j = 0; j < token.Length; j++)
                 {
                     string aCmd = token.Substring(j, 1);
-                    DebugOut("parseCommand().2 aCmd=" + aCmd);
+                    _rover.DebugOut("parseCommand().2 aCmd=" + aCmd, IsDebugChecked);
                     DoCommand(aCmd);
                 }
             }
             else
             {
                 bool b = Rover.IsInteger(token);
-                DebugOut("parseCommand().3 --> b=" + b);
+                _rover.DebugOut("parseCommand().3 --> b=" + b, IsDebugChecked);
                 if (b)
                 {
                     items.Push(token);
-                    DebugOut("parseCommand().4 items.Count=" + items.Count);
+                    _rover.DebugOut("parseCommand().4 items.Count=" + items.Count, IsDebugChecked);
                     if (items.Count == 2)
                     {
                         _rover.IPtY = Convert.ToInt32(items.Pop());
@@ -143,11 +136,11 @@ internal static class RoverMover
                 else if (_validDirections.IndexOf(token) > -1)
                 {
                     _rover.SDirection = token;
-                    DebugOut("parseCommand().5 s_direction=" + _rover.SDirection);
+                    _rover.DebugOut("parseCommand().5 s_direction=" + _rover.SDirection, IsDebugChecked);
                 }
                 else if (_validCommands.IndexOf(token) > -1)
                 {
-                    DebugOut("parseCommand().6 doCommand(" + token + ")");
+                    _rover.DebugOut("parseCommand().6 doCommand(" + token + ")", IsDebugChecked);
                     DoCommand(token);
                 }
             }

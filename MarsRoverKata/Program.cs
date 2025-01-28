@@ -2,7 +2,8 @@
 
 namespace MarsRoverKata;
 
-public class Program {
+public class Program
+{
     public static int IPtX = 0;
     public static int IPtY = 0;
     public static String SDirection = "";
@@ -18,8 +19,10 @@ public class Program {
 
     private static Boolean _isDebugChecked = false;
 
-    private static void DebugOut(String msg) {
-        if (_isDebugChecked) {
+    private static void DebugOut(String msg)
+    {
+        if (_isDebugChecked)
+        {
             Console.WriteLine(msg);
         }
     }
@@ -31,8 +34,10 @@ public class Program {
         return s;
     }
 
-    private static void DoMove() {
-        switch (SDirection) {
+    private static void DoMove()
+    {
+        switch (SDirection)
+        {
             case "N":
                 DebugOut("doMove().1 --> (s_direction == northDirection)");
                 IPtY = IPtY + 1;
@@ -52,17 +57,21 @@ public class Program {
         }
     }
 
-    private static void DoSpin(String d) {
-        SDirection = ( (_validDirections.IndexOf(d) > -1) || (_validCommands.IndexOf(d) > -1) ) ? d : SDirection;
-        DebugOut("doSpin().1 --> d="+d+", s_direction="+SDirection);
+    private static void DoSpin(String d)
+    {
+        SDirection = ((_validDirections.IndexOf(d) > -1) || (_validCommands.IndexOf(d) > -1)) ? d : SDirection;
+        DebugOut("doSpin().1 --> d=" + d + ", s_direction=" + SDirection);
     }
 
-    private static void DoCommand(String c) {
-        DebugOut("doCommand().1 --> c="+c);
-        switch (c) {
+    private static void DoCommand(String c)
+    {
+        DebugOut("doCommand().1 --> c=" + c);
+        switch (c)
+        {
             case "L":
                 DebugOut("doCommand().2 --> (c == leftCommand)");
-                switch (SDirection) {
+                switch (SDirection)
+                {
                     case "N":
                         DebugOut("doCommand().3 --> doSpin(westDirection)");
                         DoSpin(_westDirection);
@@ -83,7 +92,8 @@ public class Program {
                 break;
             case "R":
                 DebugOut("doCommand().7 --> (c == rightCommand)");
-                switch (SDirection) {
+                switch (SDirection)
+                {
                     case "N":
                         DebugOut("doCommand().8 --> doSpin(eastDirection)");
                         DoSpin(_eastDirection);
@@ -122,36 +132,48 @@ public class Program {
         }
     }
 
-    private static String ParseCommand(String c) {
+    private static String ParseCommand(String c)
+    {
         String aTok;
         String aCmd;
         Boolean b;
         Stack items = new Stack();
         String[] toks = c.Split(' ');
-        for (int i=0; i < toks.Length; i++) {
+        for (int i = 0; i < toks.Length; i++)
+        {
             aTok = toks[i];
-            DebugOut("parseCommand().1 aTok="+aTok);
-            if (aTok.Length > 1) {
-                for (var j = 0; j < aTok.Length; j++) {
-                    aCmd = aTok.Substring(j,1);
-                    DebugOut("parseCommand().2 aCmd="+aCmd);
+            DebugOut("parseCommand().1 aTok=" + aTok);
+            if (aTok.Length > 1)
+            {
+                for (var j = 0; j < aTok.Length; j++)
+                {
+                    aCmd = aTok.Substring(j, 1);
+                    DebugOut("parseCommand().2 aCmd=" + aCmd);
                     DoCommand(aCmd);
                 }
-            } else {
+            }
+            else
+            {
                 b = IsInteger(aTok);
-                DebugOut("parseCommand().3 --> b="+b);
-                if (b) {
+                DebugOut("parseCommand().3 --> b=" + b);
+                if (b)
+                {
                     items.Push(aTok);
                     DebugOut("parseCommand().4 items.Count=" + items.Count);
-                    if (items.Count == 2) {
+                    if (items.Count == 2)
+                    {
                         IPtY = Convert.ToInt32(items.Pop());
                         IPtX = Convert.ToInt32(items.Pop());
                     }
-                } else if (_validDirections.IndexOf(aTok) > -1) {
+                }
+                else if (_validDirections.IndexOf(aTok) > -1)
+                {
                     SDirection = aTok;
-                    DebugOut("parseCommand().5 s_direction="+SDirection);
-                } else if (_validCommands.IndexOf(aTok) > -1) {
-                    DebugOut("parseCommand().6 doCommand("+aTok+")");
+                    DebugOut("parseCommand().5 s_direction=" + SDirection);
+                }
+                else if (_validCommands.IndexOf(aTok) > -1)
+                {
+                    DebugOut("parseCommand().6 doCommand(" + aTok + ")");
                     DoCommand(aTok);
                 }
             }
@@ -159,7 +181,8 @@ public class Program {
         return publish_values();
     }
 
-    static void Main(string[] args) {
+    public static void Main(string[] args)
+    {
         String cmd = "1 2 N";
         String expected = "1 2 N";
         String x = ParseCommand(cmd);

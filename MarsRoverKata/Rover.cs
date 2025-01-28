@@ -2,7 +2,7 @@
 
 namespace MarsRoverKata
 {
-    public class Rover
+    public class Rover(bool isDebugChecked)
     {
         private readonly static string _validDirections = "NSEW";
         private readonly static string _northDirection = "N";
@@ -16,12 +16,7 @@ namespace MarsRoverKata
         public int Y_Position { get; set; } = 0;
         public string Direction { get; set; } = "";
 
-        private bool IsDebugChecked { get; init; }
-
-        public Rover(bool isDebugChecked)
-        {
-            IsDebugChecked = isDebugChecked;
-        }
+        private bool IsDebugChecked { get; init; } = isDebugChecked;
 
         public void DebugOut(string msg)
         {
@@ -132,7 +127,6 @@ namespace MarsRoverKata
                     break;
             }
         }
-
 
         public void DoMove()
         {

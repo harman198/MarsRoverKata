@@ -17,9 +17,11 @@ internal static class RoverMover
 
     private static bool _isDebugChecked = false;
 
+    public static bool IsDebugChecked { get => _isDebugChecked; set => _isDebugChecked = value; }
+
     private static void DebugOut(string msg)
     {
-        if (_isDebugChecked)
+        if (IsDebugChecked)
         {
             Console.WriteLine(msg);
         }

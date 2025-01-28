@@ -2,18 +2,20 @@ namespace MarsRoverKata.AcceptanceTests
 {
     public class MarsRoverKataTests
     {
-        [Fact]
-        public Task Program_Output_AcceptanceTest()
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public Task Program_Output_AcceptanceTest(bool debug)
         {
             // Arrange
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
             // Act
-            Program.Main([]);
+            Program.RunRover(debug);
 
             // Assert
-            return Verify(stringWriter.ToString());
+            return Verify(stringWriter.ToString()).UseParameters(debug);
         }
     }
 }

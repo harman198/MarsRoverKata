@@ -15,9 +15,7 @@ internal static class RoverMover
     private readonly static string _rightCommand = "R";
     private readonly static string _moveCommand = "M";
 
-    private static bool _isDebugChecked = false;
-
-    public static bool IsDebugChecked { get => _isDebugChecked; set => _isDebugChecked = value; }
+    public static bool IsDebugChecked { get; set; } = false;
 
     private static void DebugOut(string msg)
     {

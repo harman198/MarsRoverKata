@@ -1,0 +1,269 @@
+﻿parseCommand().1 aTok=1
+parseCommand().3 --> b=True
+parseCommand().4 items.Count=1
+parseCommand().1 aTok=2
+parseCommand().3 --> b=True
+parseCommand().4 items.Count=2
+parseCommand().1 aTok=N
+parseCommand().3 --> b=False
+parseCommand().5 s_direction=N
+1 2 N
+parseCommand().1 aTok=L
+parseCommand().3 --> b=False
+parseCommand().6 doCommand(L)
+doCommand().1 --> c=L
+doCommand().2 --> (c == leftCommand)
+doCommand().3 --> doSpin(westDirection)
+doSpin().1 --> d=W, s_direction=W
+1 2 W
+parseCommand().1 aTok=M
+parseCommand().3 --> b=False
+parseCommand().6 doCommand(M)
+doCommand().1 --> c=M
+doCommand().12 --> (c == moveCommand)
+doMove().4 --> (s_direction == westDirection)
+0 2 W
+parseCommand().1 aTok=L
+parseCommand().3 --> b=False
+parseCommand().6 doCommand(L)
+doCommand().1 --> c=L
+doCommand().2 --> (c == leftCommand)
+doCommand().4 --> doSpin(southDirection)
+doSpin().1 --> d=S, s_direction=S
+0 2 S
+parseCommand().1 aTok=M
+parseCommand().3 --> b=False
+parseCommand().6 doCommand(M)
+doCommand().1 --> c=M
+doCommand().12 --> (c == moveCommand)
+doMove().3 --> (s_direction == southDirection)
+0 1 S
+parseCommand().1 aTok=L
+parseCommand().3 --> b=False
+parseCommand().6 doCommand(L)
+doCommand().1 --> c=L
+doCommand().2 --> (c == leftCommand)
+doCommand().5 --> doSpin(eastDirection)
+doSpin().1 --> d=E, s_direction=E
+0 1 E
+parseCommand().1 aTok=M
+parseCommand().3 --> b=False
+parseCommand().6 doCommand(M)
+doCommand().1 --> c=M
+doCommand().12 --> (c == moveCommand)
+doMove().2 --> (s_direction == eastDirection)
+1 1 E
+parseCommand().1 aTok=L
+parseCommand().3 --> b=False
+parseCommand().6 doCommand(L)
+doCommand().1 --> c=L
+doCommand().2 --> (c == leftCommand)
+doCommand().6 --> doSpin(northDirection)
+doSpin().1 --> d=N, s_direction=N
+1 1 N
+parseCommand().1 aTok=M
+parseCommand().3 --> b=False
+parseCommand().6 doCommand(M)
+doCommand().1 --> c=M
+doCommand().12 --> (c == moveCommand)
+doMove().1 --> (s_direction == northDirection)
+1 2 N
+parseCommand().1 aTok=M
+parseCommand().3 --> b=False
+parseCommand().6 doCommand(M)
+doCommand().1 --> c=M
+doCommand().12 --> (c == moveCommand)
+doMove().1 --> (s_direction == northDirection)
+1 3 N
+parseCommand().1 aTok=3
+parseCommand().3 --> b=True
+parseCommand().4 items.Count=1
+parseCommand().1 aTok=3
+parseCommand().3 --> b=True
+parseCommand().4 items.Count=2
+parseCommand().1 aTok=E
+parseCommand().3 --> b=False
+parseCommand().5 s_direction=E
+3 3 E
+parseCommand().1 aTok=M
+parseCommand().3 --> b=False
+parseCommand().6 doCommand(M)
+doCommand().1 --> c=M
+doCommand().12 --> (c == moveCommand)
+doMove().2 --> (s_direction == eastDirection)
+4 3 E
+parseCommand().1 aTok=M
+parseCommand().3 --> b=False
+parseCommand().6 doCommand(M)
+doCommand().1 --> c=M
+doCommand().12 --> (c == moveCommand)
+doMove().2 --> (s_direction == eastDirection)
+5 3 E
+parseCommand().1 aTok=R
+parseCommand().3 --> b=False
+parseCommand().6 doCommand(R)
+doCommand().1 --> c=R
+doCommand().7 --> (c == rightCommand)
+doCommand().9 --> doSpin(southDirection)
+doSpin().1 --> d=S, s_direction=S
+5 3 S
+parseCommand().1 aTok=M
+parseCommand().3 --> b=False
+parseCommand().6 doCommand(M)
+doCommand().1 --> c=M
+doCommand().12 --> (c == moveCommand)
+doMove().3 --> (s_direction == southDirection)
+5 2 S
+parseCommand().1 aTok=M
+parseCommand().3 --> b=False
+parseCommand().6 doCommand(M)
+doCommand().1 --> c=M
+doCommand().12 --> (c == moveCommand)
+doMove().3 --> (s_direction == southDirection)
+5 1 S
+parseCommand().1 aTok=R
+parseCommand().3 --> b=False
+parseCommand().6 doCommand(R)
+doCommand().1 --> c=R
+doCommand().7 --> (c == rightCommand)
+doCommand().10 --> doSpin(westDirection)
+doSpin().1 --> d=W, s_direction=W
+5 1 W
+parseCommand().1 aTok=M
+parseCommand().3 --> b=False
+parseCommand().6 doCommand(M)
+doCommand().1 --> c=M
+doCommand().12 --> (c == moveCommand)
+doMove().4 --> (s_direction == westDirection)
+4 1 W
+parseCommand().1 aTok=R
+parseCommand().3 --> b=False
+parseCommand().6 doCommand(R)
+doCommand().1 --> c=R
+doCommand().7 --> (c == rightCommand)
+doCommand().11 --> doSpin(northDirection)
+doSpin().1 --> d=N, s_direction=N
+4 1 N
+parseCommand().1 aTok=R
+parseCommand().3 --> b=False
+parseCommand().6 doCommand(R)
+doCommand().1 --> c=R
+doCommand().7 --> (c == rightCommand)
+doCommand().8 --> doSpin(eastDirection)
+doSpin().1 --> d=E, s_direction=E
+4 1 E
+parseCommand().1 aTok=M
+parseCommand().3 --> b=False
+parseCommand().6 doCommand(M)
+doCommand().1 --> c=M
+doCommand().12 --> (c == moveCommand)
+doMove().2 --> (s_direction == eastDirection)
+5 1 E
+parseCommand().1 aTok=1
+parseCommand().3 --> b=True
+parseCommand().4 items.Count=1
+parseCommand().1 aTok=2
+parseCommand().3 --> b=True
+parseCommand().4 items.Count=2
+parseCommand().1 aTok=N
+parseCommand().3 --> b=False
+parseCommand().5 s_direction=N
+1 2 N
+parseCommand().1 aTok=LMLMLMLMM
+parseCommand().2 aCmd=L
+doCommand().1 --> c=L
+doCommand().2 --> (c == leftCommand)
+doCommand().3 --> doSpin(westDirection)
+doSpin().1 --> d=W, s_direction=W
+parseCommand().2 aCmd=M
+doCommand().1 --> c=M
+doCommand().12 --> (c == moveCommand)
+doMove().4 --> (s_direction == westDirection)
+parseCommand().2 aCmd=L
+doCommand().1 --> c=L
+doCommand().2 --> (c == leftCommand)
+doCommand().4 --> doSpin(southDirection)
+doSpin().1 --> d=S, s_direction=S
+parseCommand().2 aCmd=M
+doCommand().1 --> c=M
+doCommand().12 --> (c == moveCommand)
+doMove().3 --> (s_direction == southDirection)
+parseCommand().2 aCmd=L
+doCommand().1 --> c=L
+doCommand().2 --> (c == leftCommand)
+doCommand().5 --> doSpin(eastDirection)
+doSpin().1 --> d=E, s_direction=E
+parseCommand().2 aCmd=M
+doCommand().1 --> c=M
+doCommand().12 --> (c == moveCommand)
+doMove().2 --> (s_direction == eastDirection)
+parseCommand().2 aCmd=L
+doCommand().1 --> c=L
+doCommand().2 --> (c == leftCommand)
+doCommand().6 --> doSpin(northDirection)
+doSpin().1 --> d=N, s_direction=N
+parseCommand().2 aCmd=M
+doCommand().1 --> c=M
+doCommand().12 --> (c == moveCommand)
+doMove().1 --> (s_direction == northDirection)
+parseCommand().2 aCmd=M
+doCommand().1 --> c=M
+doCommand().12 --> (c == moveCommand)
+doMove().1 --> (s_direction == northDirection)
+1 3 N
+parseCommand().1 aTok=3
+parseCommand().3 --> b=True
+parseCommand().4 items.Count=1
+parseCommand().1 aTok=3
+parseCommand().3 --> b=True
+parseCommand().4 items.Count=2
+parseCommand().1 aTok=E
+parseCommand().3 --> b=False
+parseCommand().5 s_direction=E
+3 3 E
+parseCommand().1 aTok=MMRMMRMRRM
+parseCommand().2 aCmd=M
+doCommand().1 --> c=M
+doCommand().12 --> (c == moveCommand)
+doMove().2 --> (s_direction == eastDirection)
+parseCommand().2 aCmd=M
+doCommand().1 --> c=M
+doCommand().12 --> (c == moveCommand)
+doMove().2 --> (s_direction == eastDirection)
+parseCommand().2 aCmd=R
+doCommand().1 --> c=R
+doCommand().7 --> (c == rightCommand)
+doCommand().9 --> doSpin(southDirection)
+doSpin().1 --> d=S, s_direction=S
+parseCommand().2 aCmd=M
+doCommand().1 --> c=M
+doCommand().12 --> (c == moveCommand)
+doMove().3 --> (s_direction == southDirection)
+parseCommand().2 aCmd=M
+doCommand().1 --> c=M
+doCommand().12 --> (c == moveCommand)
+doMove().3 --> (s_direction == southDirection)
+parseCommand().2 aCmd=R
+doCommand().1 --> c=R
+doCommand().7 --> (c == rightCommand)
+doCommand().10 --> doSpin(westDirection)
+doSpin().1 --> d=W, s_direction=W
+parseCommand().2 aCmd=M
+doCommand().1 --> c=M
+doCommand().12 --> (c == moveCommand)
+doMove().4 --> (s_direction == westDirection)
+parseCommand().2 aCmd=R
+doCommand().1 --> c=R
+doCommand().7 --> (c == rightCommand)
+doCommand().11 --> doSpin(northDirection)
+doSpin().1 --> d=N, s_direction=N
+parseCommand().2 aCmd=R
+doCommand().1 --> c=R
+doCommand().7 --> (c == rightCommand)
+doCommand().8 --> doSpin(eastDirection)
+doSpin().1 --> d=E, s_direction=E
+parseCommand().2 aCmd=M
+doCommand().1 --> c=M
+doCommand().12 --> (c == moveCommand)
+doMove().2 --> (s_direction == eastDirection)
+5 1 E

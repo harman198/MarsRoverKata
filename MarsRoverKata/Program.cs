@@ -4,11 +4,6 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        RunRover();
-    }
-
-    public static void RunRover(bool debug = false)
-    {
         (string Command, string Expected)[] inputs = [("1 2 N", "1 2 N"),
                                                         ("L", "1 2 W"),
                                                         ("M", "0 2 W"),
@@ -35,6 +30,11 @@ public class Program
                                                         ("3 3 E", "3 3 E"),
                                                         ("MMRMMRMRRM", "5 1 E")];
 
+        RunRover(inputs);
+    }
+
+    public static void RunRover(IEnumerable<(string, string)> inputs, bool debug = false)
+    {
         RoverMover.IsDebugChecked = debug;
 
         foreach (var (cmd, expected) in inputs)

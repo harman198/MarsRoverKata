@@ -43,9 +43,9 @@
                 }
                 else
                 {
-                    bool b = int.TryParse(token, out int intValue);
-                    DebugOut("parseCommand().3 --> b=" + b);
-                    if (b)
+                    bool isInteger = int.TryParse(token, out int intValue);
+                    DebugOut("parseCommand().3 --> b=" + isInteger);
+                    if (isInteger)
                     {
                         items.Push(intValue);
                         DebugOut("parseCommand().4 items.Count=" + items.Count);

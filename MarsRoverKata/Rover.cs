@@ -12,7 +12,7 @@
 
         private int X_Position { get; set; } = 0;
         private int Y_Position { get; set; } = 0;
-        private string Direction { get; set; } = "";
+        private DirectionEnum Direction { get; set; }
 
         private bool IsDebugChecked { get; init; } = isDebugChecked;
 
@@ -57,8 +57,8 @@
                     }
                     else if (_validDirections.IndexOf(token) > -1)
                     {
-                        Direction = token;
-                        DebugOut("parseCommand().5 s_direction=" + Direction);
+                        Direction = ParseDirectionToken(token);
+                        DebugOut("parseCommand().5 s_direction=" + DirectionEnumToString(Direction));
                     }
                     else if (_validCommands.IndexOf(token) > -1)
                     {
@@ -79,19 +79,19 @@
                     DebugOut("doCommand().2 --> (c == leftCommand)");
                     switch (Direction)
                     {
-                        case "N":
+                        case DirectionEnum.North:
                             DebugOut("doCommand().3 --> doSpin(westDirection)");
                             DoSpin(_westDirection);
                             break;
-                        case "W":
+                        case DirectionEnum.West:
                             DebugOut("doCommand().4 --> doSpin(southDirection)");
                             DoSpin(_southDirection);
                             break;
-                        case "S":
+                        case DirectionEnum.South:
                             DebugOut("doCommand().5 --> doSpin(eastDirection)");
                             DoSpin(_eastDirection);
                             break;
-                        case "E":
+                        case DirectionEnum.East:
                             DebugOut("doCommand().6 --> doSpin(northDirection)");
                             DoSpin(_northDirection);
                             break;
@@ -101,19 +101,19 @@
                     DebugOut("doCommand().7 --> (c == rightCommand)");
                     switch (Direction)
                     {
-                        case "N":
+                        case DirectionEnum.North:
                             DebugOut("doCommand().8 --> doSpin(eastDirection)");
                             DoSpin(_eastDirection);
                             break;
-                        case "E":
+                        case DirectionEnum.East:
                             DebugOut("doCommand().9 --> doSpin(southDirection)");
                             DoSpin(_southDirection);
                             break;
-                        case "S":
+                        case DirectionEnum.South:
                             DebugOut("doCommand().10 --> doSpin(westDirection)");
                             DoSpin(_westDirection);
                             break;
-                        case "W":
+                        case DirectionEnum.West:
                             DebugOut("doCommand().11 --> doSpin(northDirection)");
                             DoSpin(_northDirection);
                             break;
@@ -130,36 +130,67 @@
         {
             switch (Direction)
             {
-                case "N":
+                case DirectionEnum.North:
                     DebugOut("doMove().1 --> (s_direction == northDirection)");
                     Y_Position = Y_Position + 1;
                     break;
-                case "E":
+                case DirectionEnum.East:
                     DebugOut("doMove().2 --> (s_direction == eastDirection)");
                     X_Position = X_Position + 1;
                     break;
-                case "S":
+                case DirectionEnum.South:
                     DebugOut("doMove().3 --> (s_direction == southDirection)");
                     Y_Position = Y_Position - 1;
                     break;
-                case "W":
+                case DirectionEnum.West:
                     DebugOut("doMove().4 --> (s_direction == westDirection)");
                     X_Position = X_Position - 1;
                     break;
+                default:
+                    throw new NotSupportedException();
             }
         }
 
         private void DoSpin(string d)
         {
-            Direction = ((_validDirections.IndexOf(d) > -1) || (_validCommands.IndexOf(d) > -1)) ? d : Direction;
-            DebugOut("doSpin().1 --> d=" + d + ", s_direction=" + Direction);
+            Direction = ((_validDirections.IndexOf(d) > -1) || (_validCommands.IndexOf(d) > -1)) ? ParseDirectionToken(d) : Direction;
+            DebugOut("doSpin().1 --> d=" + d + ", s_direction=" + DirectionEnumToString(Direction));
         }
 
         private string PublishValues()
         {
-            string s = X_Position + " " + Y_Position + " " + Direction;
+            string s = X_Position + " " + Y_Position + " " + DirectionEnumToString(Direction);
             Console.WriteLine(s);
             return s;
         }
+
+        private static DirectionEnum ParseDirectionToken(string value)
+            => value switch
+            {
+                "N" => DirectionEnum.North,
+                "E" => DirectionEnum.East,
+                "S" => DirectionEnum.South,
+                "W" => DirectionEnum.West,
+                _ => throw new NotSupportedException()
+            };
+
+        private static string DirectionEnumToString(DirectionEnum direction) => direction switch
+        {
+            DirectionEnum.North => "N",
+            DirectionEnum.West => "W",
+            DirectionEnum.South => "S",
+            DirectionEnum.East => "E",
+            _ => throw new NotSupportedException()
+        };
+
+        enum DirectionEnum
+        {
+            North,
+            West,
+            South,
+            East
+        }
+
     }
+
 }

@@ -68,30 +68,7 @@ internal static class RoverMover
                 break;
             case "M":
                 _rover.DebugOut("doCommand().12 --> (c == moveCommand)", IsDebugChecked);
-                DoMove();
-                break;
-        }
-    }
-
-    private static void DoMove()
-    {
-        switch (_rover.SDirection)
-        {
-            case "N":
-                _rover.DebugOut("doMove().1 --> (s_direction == northDirection)", IsDebugChecked);
-                _rover.IPtY = _rover.IPtY + 1;
-                break;
-            case "E":
-                _rover.DebugOut("doMove().2 --> (s_direction == eastDirection)", IsDebugChecked);
-                _rover.IPtX = _rover.IPtX + 1;
-                break;
-            case "S":
-                _rover.DebugOut("doMove().3 --> (s_direction == southDirection)", IsDebugChecked);
-                _rover.IPtY = _rover.IPtY - 1;
-                break;
-            case "W":
-                _rover.DebugOut("doMove().4 --> (s_direction == westDirection)", IsDebugChecked);
-                _rover.IPtX = _rover.IPtX - 1;
+                _rover.DoMove(IsDebugChecked);
                 break;
         }
     }

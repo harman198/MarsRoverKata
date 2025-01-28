@@ -16,6 +16,29 @@
             }
         }
 
+        public void DoMove(bool isDebugChecked)
+        {
+            switch (SDirection)
+            {
+                case "N":
+                    DebugOut("doMove().1 --> (s_direction == northDirection)", isDebugChecked);
+                    IPtY = IPtY + 1;
+                    break;
+                case "E":
+                    DebugOut("doMove().2 --> (s_direction == eastDirection)", isDebugChecked);
+                    IPtX = IPtX + 1;
+                    break;
+                case "S":
+                    DebugOut("doMove().3 --> (s_direction == southDirection)", isDebugChecked);
+                    IPtY = IPtY - 1;
+                    break;
+                case "W":
+                    DebugOut("doMove().4 --> (s_direction == westDirection)", isDebugChecked);
+                    IPtX = IPtX - 1;
+                    break;
+            }
+        }
+
         public string publish_values()
         {
             string s = IPtX + " " + IPtY + " " + SDirection;

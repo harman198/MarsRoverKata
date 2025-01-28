@@ -125,27 +125,24 @@ internal static class RoverMover
 
     public static string ParseCommand(string c)
     {
-        string aTok;
-        string aCmd;
-        bool b;
         Stack items = new();
         string[] toks = c.Split(' ');
         for (int i = 0; i < toks.Length; i++)
         {
-            aTok = toks[i];
+            string aTok = toks[i];
             DebugOut("parseCommand().1 aTok=" + aTok);
             if (aTok.Length > 1)
             {
                 for (var j = 0; j < aTok.Length; j++)
                 {
-                    aCmd = aTok.Substring(j, 1);
+                    string aCmd = aTok.Substring(j, 1);
                     DebugOut("parseCommand().2 aCmd=" + aCmd);
                     DoCommand(aCmd);
                 }
             }
             else
             {
-                b = IsInteger(aTok);
+                bool b = IsInteger(aTok);
                 DebugOut("parseCommand().3 --> b=" + b);
                 if (b)
                 {

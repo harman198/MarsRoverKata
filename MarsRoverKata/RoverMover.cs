@@ -1,10 +1,9 @@
-﻿using System.Collections;
+﻿using MarsRoverKata;
+using System.Collections;
 
 internal static class RoverMover
 {
-    public static int IPtX = 0;
-    public static int IPtY = 0;
-    public static string SDirection = "";
+    private static readonly Rover _rover = new();
     private readonly static string _validDirections = "NSEW";
     private readonly static string _northDirection = "N";
     private readonly static string _southDirection = "S";
@@ -32,7 +31,7 @@ internal static class RoverMover
         {
             case "L":
                 DebugOut("doCommand().2 --> (c == leftCommand)");
-                switch (SDirection)
+                switch (_rover.SDirection)
                 {
                     case "N":
                         DebugOut("doCommand().3 --> doSpin(westDirection)");
@@ -54,7 +53,7 @@ internal static class RoverMover
                 break;
             case "R":
                 DebugOut("doCommand().7 --> (c == rightCommand)");
-                switch (SDirection)
+                switch (_rover.SDirection)
                 {
                     case "N":
                         DebugOut("doCommand().8 --> doSpin(eastDirection)");
@@ -83,31 +82,31 @@ internal static class RoverMover
 
     private static void DoMove()
     {
-        switch (SDirection)
+        switch (_rover.SDirection)
         {
             case "N":
                 DebugOut("doMove().1 --> (s_direction == northDirection)");
-                IPtY = IPtY + 1;
+                _rover.IPtY = _rover.IPtY + 1;
                 break;
             case "E":
                 DebugOut("doMove().2 --> (s_direction == eastDirection)");
-                IPtX = IPtX + 1;
+                _rover.IPtX = _rover.IPtX + 1;
                 break;
             case "S":
                 DebugOut("doMove().3 --> (s_direction == southDirection)");
-                IPtY = IPtY - 1;
+                _rover.IPtY = _rover.IPtY - 1;
                 break;
             case "W":
                 DebugOut("doMove().4 --> (s_direction == westDirection)");
-                IPtX = IPtX - 1;
+                _rover.IPtX = _rover.IPtX - 1;
                 break;
         }
     }
 
     private static void DoSpin(string d)
     {
-        SDirection = ((_validDirections.IndexOf(d) > -1) || (_validCommands.IndexOf(d) > -1)) ? d : SDirection;
-        DebugOut("doSpin().1 --> d=" + d + ", s_direction=" + SDirection);
+        _rover.SDirection = ((_validDirections.IndexOf(d) > -1) || (_validCommands.IndexOf(d) > -1)) ? d : _rover.SDirection;
+        DebugOut("doSpin().1 --> d=" + d + ", s_direction=" + _rover.SDirection);
     }
 
     private static bool IsInteger(string theValue)
@@ -150,14 +149,14 @@ internal static class RoverMover
                     DebugOut("parseCommand().4 items.Count=" + items.Count);
                     if (items.Count == 2)
                     {
-                        IPtY = Convert.ToInt32(items.Pop());
-                        IPtX = Convert.ToInt32(items.Pop());
+                        _rover.IPtY = Convert.ToInt32(items.Pop());
+                        _rover.IPtX = Convert.ToInt32(items.Pop());
                     }
                 }
                 else if (_validDirections.IndexOf(token) > -1)
                 {
-                    SDirection = token;
-                    DebugOut("parseCommand().5 s_direction=" + SDirection);
+                    _rover.SDirection = token;
+                    DebugOut("parseCommand().5 s_direction=" + _rover.SDirection);
                 }
                 else if (_validCommands.IndexOf(token) > -1)
                 {
@@ -171,7 +170,7 @@ internal static class RoverMover
 
     private static string publish_values()
     {
-        string s = IPtX + " " + IPtY + " " + SDirection;
+        string s = _rover.IPtX + " " + _rover.IPtY + " " + _rover.SDirection;
         Console.WriteLine(s);
         return s;
     }

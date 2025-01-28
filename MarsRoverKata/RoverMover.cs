@@ -152,13 +152,7 @@ internal static class RoverMover
                 }
             }
         }
-        return publish_values();
+        return _rover.publish_values();
     }
 
-    private static string publish_values()
-    {
-        string s = _rover.IPtX + " " + _rover.IPtY + " " + _rover.SDirection;
-        Console.WriteLine(s);
-        return s;
-    }
 }

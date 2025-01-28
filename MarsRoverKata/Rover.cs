@@ -18,7 +18,7 @@ namespace MarsRoverKata
 
         private bool IsDebugChecked { get; init; } = isDebugChecked;
 
-        public void DebugOut(string msg)
+        private void DebugOut(string msg)
         {
             if (IsDebugChecked)
             {
@@ -72,7 +72,7 @@ namespace MarsRoverKata
             return publish_values();
         }
 
-        public void DoCommand(string c)
+        private void DoCommand(string c)
         {
             DebugOut("doCommand().1 --> c=" + c);
             switch (c)
@@ -128,7 +128,7 @@ namespace MarsRoverKata
             }
         }
 
-        public void DoMove()
+        private void DoMove()
         {
             switch (Direction)
             {
@@ -151,20 +151,20 @@ namespace MarsRoverKata
             }
         }
 
-        public void DoSpin(string d)
+        private void DoSpin(string d)
         {
             Direction = ((_validDirections.IndexOf(d) > -1) || (_validCommands.IndexOf(d) > -1)) ? d : Direction;
             DebugOut("doSpin().1 --> d=" + d + ", s_direction=" + Direction);
         }
 
-        public string publish_values()
+        private string publish_values()
         {
             string s = X_Position + " " + Y_Position + " " + Direction;
             Console.WriteLine(s);
             return s;
         }
 
-        public static bool IsInteger(string theValue)
+        private static bool IsInteger(string theValue)
         {
             try
             {

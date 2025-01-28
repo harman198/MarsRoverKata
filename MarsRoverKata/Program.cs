@@ -35,11 +35,11 @@ public class Program
 
     public static void RunRover(IEnumerable<(string, string)> inputs, bool debug = false)
     {
-        RoverMover.IsDebugChecked = debug;
+        var rover = new Rover();
 
         foreach (var (cmd, expected) in inputs)
         {
-            string x = RoverMover.ParseCommand(cmd);
+            string x = rover.ParseCommand(cmd, debug);
             if (x != expected)
             {
                 Console.WriteLine("ERROR #1");

@@ -1,4 +1,6 @@
-﻿namespace MarsRoverKata
+﻿using System.Collections;
+
+namespace MarsRoverKata
 {
     public class Rover
     {
@@ -22,6 +24,52 @@
             {
                 Console.WriteLine(msg);
             }
+        }
+
+        public string ParseCommand(string c, bool IsDebugChecked)
+        {
+            Stack items = new();
+            string[] tokens = c.Split(' ');
+            for (int i = 0; i < tokens.Length; i++)
+            {
+                string token = tokens[i];
+                DebugOut("parseCommand().1 aTok=" + token, IsDebugChecked);
+                if (token.Length > 1)
+                {
+                    for (var j = 0; j < token.Length; j++)
+                    {
+                        string aCmd = token.Substring(j, 1);
+                        DebugOut("parseCommand().2 aCmd=" + aCmd, IsDebugChecked);
+                        DoCommand(aCmd, IsDebugChecked);
+                    }
+                }
+                else
+                {
+                    bool b = Rover.IsInteger(token);
+                    DebugOut("parseCommand().3 --> b=" + b, IsDebugChecked);
+                    if (b)
+                    {
+                        items.Push(token);
+                        DebugOut("parseCommand().4 items.Count=" + items.Count, IsDebugChecked);
+                        if (items.Count == 2)
+                        {
+                            IPtY = Convert.ToInt32(items.Pop());
+                            IPtX = Convert.ToInt32(items.Pop());
+                        }
+                    }
+                    else if (_validDirections.IndexOf(token) > -1)
+                    {
+                        SDirection = token;
+                        DebugOut("parseCommand().5 s_direction=" + SDirection, IsDebugChecked);
+                    }
+                    else if (_validCommands.IndexOf(token) > -1)
+                    {
+                        DebugOut("parseCommand().6 doCommand(" + token + ")", IsDebugChecked);
+                        DoCommand(token, IsDebugChecked);
+                    }
+                }
+            }
+            return publish_values();
         }
 
         public void DoCommand(string c, bool IsDebugChecked)

@@ -5,15 +5,15 @@ internal static class RoverMover
     public static int IPtX = 0;
     public static int IPtY = 0;
     public static string SDirection = "";
-    private static string _validDirections = "NSEW";
-    private static string _northDirection = "N";
-    private static string _southDirection = "S";
-    private static string _eastDirection = "E";
-    private static string _westDirection = "W";
-    private static string _validCommands = "LRM";
-    private static string _leftCommand = "L";
-    private static string _rightCommand = "R";
-    private static string _moveCommand = "M";
+    private readonly static string _validDirections = "NSEW";
+    private readonly static string _northDirection = "N";
+    private readonly static string _southDirection = "S";
+    private readonly static string _eastDirection = "E";
+    private readonly static string _westDirection = "W";
+    private readonly static string _validCommands = "LRM";
+    private readonly static string _leftCommand = "L";
+    private readonly static string _rightCommand = "R";
+    private readonly static string _moveCommand = "M";
 
     private static bool _isDebugChecked = false;
 

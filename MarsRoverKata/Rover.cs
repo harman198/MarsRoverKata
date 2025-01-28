@@ -12,9 +12,9 @@ namespace MarsRoverKata
 
         private readonly static string _validCommands = "LRM";
 
-        public int X_Position { get; set; } = 0;
-        public int Y_Position { get; set; } = 0;
-        public string Direction { get; set; } = "";
+        private int X_Position { get; set; } = 0;
+        private int Y_Position { get; set; } = 0;
+        private string Direction { get; set; } = "";
 
         private bool IsDebugChecked { get; init; } = isDebugChecked;
 

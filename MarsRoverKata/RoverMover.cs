@@ -109,19 +109,6 @@ internal static class RoverMover
         DebugOut("doSpin().1 --> d=" + d + ", s_direction=" + _rover.SDirection);
     }
 
-    private static bool IsInteger(string theValue)
-    {
-        try
-        {
-            Convert.ToInt32(theValue);
-            return true;
-        }
-        catch
-        {
-            return false;
-        }
-    }
-
     public static string ParseCommand(string c)
     {
         Stack items = new();
@@ -141,7 +128,7 @@ internal static class RoverMover
             }
             else
             {
-                bool b = IsInteger(token);
+                bool b = Rover.IsInteger(token);
                 DebugOut("parseCommand().3 --> b=" + b);
                 if (b)
                 {

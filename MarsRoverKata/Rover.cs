@@ -132,19 +132,19 @@
             {
                 case DirectionEnum.North:
                     DebugOut("doMove().1 --> (s_direction == northDirection)");
-                    Y_Position = Y_Position + 1;
+                    Y_Position++;
                     break;
                 case DirectionEnum.East:
                     DebugOut("doMove().2 --> (s_direction == eastDirection)");
-                    X_Position = X_Position + 1;
+                    X_Position++;
                     break;
                 case DirectionEnum.South:
                     DebugOut("doMove().3 --> (s_direction == southDirection)");
-                    Y_Position = Y_Position - 1;
+                    Y_Position--;
                     break;
                 case DirectionEnum.West:
                     DebugOut("doMove().4 --> (s_direction == westDirection)");
-                    X_Position = X_Position - 1;
+                    X_Position--;
                     break;
                 default:
                     throw new NotSupportedException();

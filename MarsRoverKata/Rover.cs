@@ -1,6 +1,6 @@
 ﻿namespace MarsRoverKata
 {
-    public class Rover(bool isDebugChecked)
+    public class Rover(bool isDebugChecked, CommandParser commandParser)
     {
         private readonly static string _validDirections = "NSEW";
         private readonly static string _northDirection = "N";

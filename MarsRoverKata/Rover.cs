@@ -9,6 +9,7 @@
         private readonly static string _westDirection = "W";
 
         private readonly static string _validCommands = "LRM";
+        private readonly CommandParser _commandParser = commandParser;
 
         private int X_Position { get; set; } = 0;
         private int Y_Position { get; set; } = 0;
@@ -57,8 +58,8 @@
                     }
                     else if (_validDirections.IndexOf(token) > -1)
                     {
-                        Direction = ParseDirectionToken(token);
-                        DebugOut("parseCommand().5 s_direction=" + DirectionEnumToString(Direction));
+                        Direction = CommandParser.ParseDirectionToken(token);
+                        DebugOut("parseCommand().5 s_direction=" + CommandParser.DirectionEnumToString(Direction));
                     }
                     else if (_validCommands.IndexOf(token) > -1)
                     {
@@ -153,37 +154,18 @@
 
         private void DoSpin(string d)
         {
-            Direction = ((_validDirections.IndexOf(d) > -1) || (_validCommands.IndexOf(d) > -1)) ? ParseDirectionToken(d) : Direction;
-            DebugOut("doSpin().1 --> d=" + d + ", s_direction=" + DirectionEnumToString(Direction));
+            Direction = ((_validDirections.IndexOf(d) > -1) || (_validCommands.IndexOf(d) > -1)) ? CommandParser.ParseDirectionToken(d) : Direction;
+            DebugOut("doSpin().1 --> d=" + d + ", s_direction=" + CommandParser.DirectionEnumToString(Direction));
         }
 
         private string PublishValues()
         {
-            string s = X_Position + " " + Y_Position + " " + DirectionEnumToString(Direction);
+            string s = X_Position + " " + Y_Position + " " + CommandParser.DirectionEnumToString(Direction);
             Console.WriteLine(s);
             return s;
         }
 
-        private static DirectionEnum ParseDirectionToken(string value)
-            => value switch
-            {
-                "N" => DirectionEnum.North,
-                "E" => DirectionEnum.East,
-                "S" => DirectionEnum.South,
-                "W" => DirectionEnum.West,
-                _ => throw new NotSupportedException()
-            };
-
-        private static string DirectionEnumToString(DirectionEnum direction) => direction switch
-        {
-            DirectionEnum.North => "N",
-            DirectionEnum.West => "W",
-            DirectionEnum.South => "S",
-            DirectionEnum.East => "E",
-            _ => throw new NotSupportedException()
-        };
-
-        enum DirectionEnum
+        public enum DirectionEnum
         {
             North,
             West,

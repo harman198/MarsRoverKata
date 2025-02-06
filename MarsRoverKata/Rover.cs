@@ -154,7 +154,7 @@
         private string PublishValues()
         {
             string s = X_Position + " " + Y_Position + " " + CommandParser.DirectionEnumToString(Direction);
-            Console.WriteLine(s);
+            _printer.Out(s);
             return s;
         }
 

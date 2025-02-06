@@ -12,4 +12,8 @@ public class Printer(bool isDebugChecked)
         }
     }
 
+    public void Out(string msg)
+    {
+        Console.WriteLine(msg);
+    }
 }

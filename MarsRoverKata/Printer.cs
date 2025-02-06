@@ -4,4 +4,12 @@ public class Printer(bool isDebugChecked)
 {
     private bool IsDebugChecked { get; } = isDebugChecked;
 
+    public void DebugOut(string msg)
+    {
+        if (IsDebugChecked)
+        {
+            Console.WriteLine(msg);
+        }
+    }
+
 }
